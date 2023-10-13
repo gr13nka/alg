@@ -85,7 +85,7 @@ class DynamicArray:
         self.size += 1
 
     def insert(self, idx, data):
-        if (self.size >= self.capacity):
+        if (self.size == self.capacity):
             self.grow()
             self.changeArray()
 
@@ -136,16 +136,18 @@ def SortingStation(istream):
         "-": 1,
         "*": 2,
         "/": 2,
-        "^": 3
+        "^": 3,
+        "sin": 4,
+        "cos": 4
     }
 
     for current in expression:
         if current.isdigit():
             ostream+=current
-        elif current == 'sin' or current == "cos":
-            operator_stack.push(current)
-            while operator_stack.peek() != '(':
-                ostream += operator_stack.pop()
+#        elif current == "sin" or current == "cos":
+ #           operator_stack.push(current)
+  #          while operator_stack.peek() != '(':
+   #             ostream += operator_stack.pop()
 
         elif current in operations:
             while (not operator_stack.is_empty() and operator_stack.peek() != '(' and operations[operator_stack.peek()] >= operations[current]):
@@ -170,13 +172,31 @@ def SortingStation(istream):
     return ostream
 
 
-print(SortingStation("( 4 * 3 - 1 ) * ( 3 - 2 )"))
+list = LinkedList()
+list.append(1)
+list.append(2)
+list.append(2)
+list.append(2)
+list.display()
+list.remove(0)
+list.display()
 
-#print(stack.pop())
-#print(stack.pop()  while cur)
+dlist = DynamicArray()
+dlist.insert(0,0)
+dlist.append(1)
+dlist.append(2)
+dlist.append(3)
+dlist.append(4)
+for i in range(5):
+    print(dlist.array[i])
+print("-----------------")
+dlist.remove(2)
+for i in range(4):
+    print(dlist.array[i])
+print("-----------------")
 
 
-
+print(SortingStation("sin ( 1 + 1 ) * 3 + cos ( 1 ) "))
 
 
 
